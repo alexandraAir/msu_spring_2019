@@ -8,28 +8,39 @@ class Matrix {
     public:
         int *column;
         int cols;
-
+        
         Columns() {}
-        Columns(int size) : cols(size) {
+        
+        void init(int size) {
+            cols = size;
             column = new int[cols];
+            
         }
-
-        int& operator[](int index) const {
+        
+        const int& operator[](int index) const {
             if (index >= cols)
                 throw std::out_of_range("");
             return column[index];
         }
-   
+        
+        int& operator[](int index) {
+            if (index >= cols)
+                throw std::out_of_range("");
+            return column[index];
+        }
+        
+        void del() { delete column; }
+        
         
     };
     
-
+    
 public:
-
+    
     Matrix(const int r, const int c) : rows(r), cols(c) {
         matrix = new Columns[rows];
         for (int i = 0; i < rows; i++)
-            matrix[i] = Columns(cols);
+            matrix[i].init(cols);
         
     }
     
@@ -83,12 +94,12 @@ public:
     
     ~Matrix() {
         for (int i = 0; i < rows; i++)
-            delete[] matrix[i].column;
+            matrix[i].del();
         
         delete[] matrix;
         
     }
-    
-    
+        
     
 };
+
