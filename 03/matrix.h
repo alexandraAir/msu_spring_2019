@@ -28,6 +28,8 @@ class Matrix {
             return column[index];
         }
         
+        ~Columns() { delete[] column; }
+        
         
     };
     
