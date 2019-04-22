@@ -13,9 +13,9 @@ class Serializer
  
     Error write(const bool value) {
         if (value)
-            out_<<"true"<<Separator;
+            out_<< "true" <<Separator;
         else
-            out_<<"false"<<Separator;
+            out_<< "false" <<Separator;
 
         return Error::NoError;
     }
